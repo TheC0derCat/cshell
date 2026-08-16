@@ -13,8 +13,6 @@ int main(int argc, char **argv){
 		size_t len = 0;
 		printf("$_");
 		getline(&input, &len, stdin);
-		if(!strcmp(input, "exit\n"))
-			return 0;
 		char **parts = malloc(1 * sizeof(char*));
 		int parts_len = 0;
 		// tokenize part
@@ -25,6 +23,10 @@ int main(int argc, char **argv){
 			token = strtok(NULL, " \n");
 		}
 		parts[parts_len] = NULL;
+		if(!strcmp(parts[0], "exit"))
+			return 0;
+		if(!strcmp(parts[0], "cd"))
+			chdir(parts[1]);
 		for(int i = 0; i < parts_len; i++){
 			if(!strcmp(parts[i], "$SHELL") && (argc != 0))
 				parts[i] = argv[0];
