@@ -15,13 +15,13 @@ int main(int argc, char **argv){
 		getline(&input, &len, stdin);
 		if(!strcmp(input, "exit\n"))
 			return 0;
-		char **parts = malloc(1 * sizeof(char *));
+		char **parts = malloc(1 * sizeof(char*));
 		int parts_len = 0;
 		// tokenize part
 		char *token = strtok(input, " \n");
 		while(token != NULL) {
 			parts[parts_len++] = token;
-			parts = realloc(parts, (parts_len + 1) * sizeof(char *));
+			parts = realloc(parts, (parts_len + 1) * sizeof(char*));
 			token = strtok(NULL, " \n");
 		}
 		parts[parts_len] = NULL;
