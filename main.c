@@ -7,7 +7,7 @@
 #include<sys/wait.h>
 #include<pwd.h>
 #define DEFLEN 50
-int main(int argc, char **argv){
+int main(void){
 	while(1){
 		char *input = NULL;
 		size_t len = 0;
@@ -28,8 +28,8 @@ int main(int argc, char **argv){
 		if(!strcmp(parts[0], "cd"))
 			chdir(parts[1]);
 		for(int i = 0; i < parts_len; i++){
-			if(!strcmp(parts[i], "$SHELL") && (argc != 0))
-				parts[i] = argv[0];
+			if(!strcmp(parts[i], "$SHELL"))
+				parts[i] = "cshell";
 			if(!strcmp(parts[i], "$USER")){
 				struct passwd *pw = getpwuid(getuid());
 				parts[i] = pw->pw_name;
